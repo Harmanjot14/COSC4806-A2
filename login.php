@@ -1,9 +1,10 @@
 <?php
 
 session_start();
+require_once('user.php');
 
 //if failed attempt than displaying it at login page
-if(isset($_SESSION['failed_attempts'])){
+if(!empty($_SESSION['failed_attempts'])){
   echo "This is unsuccessful attempt number ". $_SESSION['failed_attempts'];
 }
 
@@ -29,7 +30,7 @@ if(isset($_SESSION['failed_attempts'])){
       <input type="submit" value="Submit">
       </form>
 
-      <p>Create account here <a href="/signup.php">Sign up</a></p>
+      <p>Create account here: <a href="/signup.php">Sign up</a></p>
 
 
   </body>
