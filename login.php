@@ -29,6 +29,8 @@ if(isset($_SESSION['failed_attempts'])){
       <input type="submit" value="Submit">
       </form>
 
+      <p>Create account here <a href="/signup.php">Sign up</a></p>
+
 
   </body>
 
