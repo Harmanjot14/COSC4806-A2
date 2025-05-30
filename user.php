@@ -17,6 +17,7 @@
       $statement = $db->prepare("select * from users where username = :username;");
       $statement->execute(['username' => $username]);
       $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      return $rows;
     }
 
     public function create_user($username, $password){
