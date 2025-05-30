@@ -1,16 +1,17 @@
 <?php
 
 session_start();
+require_once('user.php');
 
-$valid_username = 'Harman';
-$valid_password = '12345password';
 
-$username = $_REQUEST['username'];
-$_SESSION['username'] = $username; 
-$password = $_REQUEST['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-if($valid_username == $username && $valid_password == $password){
+$user = new User();
+$user_info = $user->get_user($username);
+if ($user_info && password_verify($password, $user_info['password'])){
   $_SESSION['authenticated'] = 1;
+  $_SESSION['username'] = $username;
   header('Location: /');
 }
 else{
@@ -20,10 +21,7 @@ else{
   else{
     $_SESSION['failed_attempts'] = $_SESSION['failed_attempts'] + 1;
   }
-  //header to redirect to login.php
   header('Location: /login.php');
-  //echo "This is unsuccessful attempt number " . $_SESSION['failed_attempts'] no need here 
 }
-
 
 ?>
