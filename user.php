@@ -20,6 +20,12 @@
       if ($rows){
         return "Username already exists";
       }
+
+      /*validate password is at least 10 characters*/
+      if (strlen($password) < 10 || !preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password))
+        return "Password must be at least 10 characters, contain at least one uppercase letter and one lowercase letter";
+
+    
       /*hashed password*/
       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     
