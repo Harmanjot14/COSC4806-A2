@@ -9,3 +9,4 @@ echo "<pre>";
 print_r($user_list);
 
 ?>
+<p><a href = "login.php">Login Page</a></p>
