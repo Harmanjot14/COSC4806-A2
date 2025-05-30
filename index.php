@@ -1,4 +1,10 @@
 <?php
+session_start();
+$_SESSION['failed_attempts'] = 0;
+if(isset($_SESSION['authenticated'])){
+  echo "Welcome, " . $_SESSION['username'] . "!";
+  echo "<p><a href = 'logout.php'>Logout</a></p>";
+}
 
 require_once('user.php');
 
