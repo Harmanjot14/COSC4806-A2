@@ -10,6 +10,24 @@
       $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $rows;
     }
+
+    public function create_user($username, $password){
+      $db = db_connect();
+      /*to check if username already exists*/
+      $statement = $db->prepare("select * from users where username = :username;");
+      $statement->execute(['username' => $username]);
+      $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      if ($rows){
+        return "Username already exists";
+      }
+      /*hashed password*/
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+      /*create a new user*/
+      $statement = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password);");
+      $statement->execute(['username' => $username, 'password' => $hashedPassword]);
+      return "Username and Password created successfully";
+    }
   }
 
 
