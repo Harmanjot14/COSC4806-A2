@@ -13,6 +13,7 @@ if ($user_info && password_verify($password, $user_info['password'])){
   $_SESSION['authenticated'] = 1;
   $_SESSION['username'] = $username;
   header('Location: /');
+  exit();
 }
 else{
   if(!isset($_SESSION['failed_attempts'])){
@@ -22,6 +23,7 @@ else{
     $_SESSION['failed_attempts'] = $_SESSION['failed_attempts'] + 1;
   }
   header('Location: /login.php');
+  exit();
 }
 
 ?>
